@@ -67,7 +67,8 @@ sudo apt-get install libxmu-dev
 sudo apt-get install mesa-utils
 sudo apt-get install mesa-utils-extra
 
-
+Note: Please do a throrough research on what kind of graphics packages does your nvidia card use in compatibility with ubuntu before
+installing them, as installing the wrong ones will lead to issues with even basic Gnome functions.
 After installing the above libraries one may proceed to follow the instructions below. These instructions were part of the default
 instructions in the cgnslib available for download from the cgns website. 
 
