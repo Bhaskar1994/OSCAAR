@@ -1,0 +1,25 @@
+bm1994@ubuntu:~/Desktop/selfwritten cgns$ gcc -I '/home/bm1994/Desktop/cgnsbuild/include' -c readcgdata1.c 
+
+bm1994@ubuntu:~/Desktop/selfwritten cgns$ gcc -o readcgdata_1 readcgdata1.o -L  '/home/bm1994/Desktop/cgnsbuild/lib' -lcgns -L '/usr/lib/x86_64-linux-gnu'  -lhdf5
+
+bm1994@ubuntu:~/Desktop/selfwritten cgns$ export LD_LIBRARY_PATH='/home/bm1994/Desktop/cgnsbuild/lib' 
+bm1994@ubuntu:~/Desktop/selfwritten cgns$ ./readcgdata_1
+
+To run with gdb
+
+bm1994@ubuntu:~/Desktop/selfwritten cgns$ gcc -I '/home/bm1994/Desktop/cgnsbuild/include' -c -g readcgdata1.c 
+
+bm1994@ubuntu:~/Desktop/selfwritten cgns$ gcc -o readcgdata_1 readcgdata1.o -L  '/home/bm1994/Desktop/cgnsbuild/lib' -lcgns -L '/usr/lib/x86_64-linux-gnu'  -lhdf5
+
+bm1994@ubuntu:~/Desktop/selfwritten cgns$ export LD_LIBRARY_PATH='/home/bm1994/Desktop/cgnsbuild/lib' 
+bm1994@ubuntu:~/Desktop/selfwritten cgns$ gdb readcgdata_1
+
+
+To run with gdb ver 2
+
+bm1994@ubuntu:~/Desktop/selfwritten cgns$ gcc -I '/home/bm1994/Desktop/cgnsbuild/include' -c -g readcgdata2.c 
+
+bm1994@ubuntu:~/Desktop/selfwritten cgns$ gcc -o readcgdata_2 readcgdata2.o -L  '/home/bm1994/Desktop/cgnsbuild/lib' -lcgns -L '/usr/lib/x86_64-linux-gnu'  -lhdf5
+
+bm1994@ubuntu:~/Desktop/selfwritten cgns$ export LD_LIBRARY_PATH='/home/bm1994/Desktop/cgnsbuild/lib' 
+bm1994@ubuntu:~/Desktop/selfwritten cgns$ gdb readcgdata_2

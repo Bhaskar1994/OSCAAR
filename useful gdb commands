@@ -1,0 +1,33 @@
+run
+
+finish     
+//finish current ffunctionn or loop
+
+continue
+
+list 
+// show lines of code surrounding current point
+
+print name
+// print value stored at variable
+
+p *name
+// print 	what is pointed by pointer name
+
+info b
+//list all breakpoinnts
+
+disable 1
+//disable breakpoint 1
+
+enable 1
+// enable breakpoint 1
+
+delete 1
+// delete breakpint 1
+
+d
+// delete all breakpints
+
+d 1 2
+// delete breakpints 1, 2

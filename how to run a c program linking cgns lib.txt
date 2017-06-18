@@ -1,0 +1,47 @@
+How to run a self-written cgns program written in C
+
+cd 'path to the written program'
+
+
+ubuntu:~/path to the written program$ gcc -I 'path to cgnsbuild/include' -c cprogram.c
+ubuntu:~/path to the written program$ gcc -o  name_of_executable cprogram.o  -L 'path to cgns build/lib' -lcgns -L '../../../usr/lib/x86_64-linux-gnu' -lhdf5
+ubuntu:~/path to the written program$ ./name_of_executable
+
+if you get the error message like this:
+
+error while loading shared libraries: libcgns.so.3.2: cannot open shared object file: No such file or directory
+
+Then search for the address of the file libcgns.so.3.2. 
+
+Use this in the samme terminal window:
+
+ubuntu:~/path to the written program$ LD_LIBRARY_PATH=/path to cgns build/lib 
+
+ubuntu:~/path to the written program$ export LD_LIBRARY_PATH=/path to cgns build/lib 
+
+ubuntu:~/path to the written program$ ./name_of_executable
+
+After tunning the executable, type the following:
+
+ubuntu:~/path to the written program$ unset LD_LIBRARY_PATH
+
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+ACTUAL COMMANDS USED
+
+bm1994@ubuntu:~/Desktop/selfwritten cgns$ gcc -I '/home/bm1994/Desktop/cgnsbuild/include' -c readcgnsver5.c 
+
+bm1994@ubuntu:~/Desktop/selfwritten cgns$ gcc -o readcgns_5 readcgnsver5.o -L  '/home/bm1994/Desktop/cgnsbuild/lib' -lcgns -L '/usr/lib/x86_64-linux-gnu'  -lhdf5
+
+bm1994@ubuntu:~/Desktop/selfwritten cgns$ export LD_LIBRARY_PATH='/home/bm1994/Desktop/cgnsbuild/lib' 
+bm1994@ubuntu:~/Desktop/selfwritten cgns$ ./readcgns_5
+
+created simple 3-D grid points
+
+Successfully wrote unstructured grid to file grid_c.cgns
+bm1994@ubuntu:~/Desktop/selfwritten cgns$ unset LD_LIBRARY_PATH
+
+
