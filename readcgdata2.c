@@ -58,6 +58,7 @@ WRITE A FUNCTION TO READ NODES ALONG WITH CELL TYPES OF ZONES WHERE THE NOISE WI
 int coordinatecount;
 
 int filecount(char filename[500]);
+int cgnsvaluegenerator(char addr[500]);
 
 //int filecount(*a);
 
@@ -178,27 +179,43 @@ int addresslen = strlen(address[0]);
 
 	
 		int	connectivitydomainnumber;
-		connectivitydomainnumber=7;
+		connectivitydomainnumber=6;     //number of domains with connectivity data
 		float **connectivitydata;		
 		connectivitydata=(float**) malloc (connectivitydomainnumber * sizeof(float*));
 		int connectivitydatadomaincount;
 		float tempconnectivitydata;
 
-for(i=5;i<12;i++)
+int startconnectivity, endconnectivity;   // integer to store starting and ending connectivity points 
+
+startconnectivity=3;                      // address[i] where the first address for connectivity file is there startconnectivity=i
+endconnectivity=9;						  // address[i] where the last address for connectivity is there, endonncetivity=i+1
+
+int numberofconnectivity;					//number of domains with connectivity data
+
+numberofconnectivity=endconnectivity-startconnectivity;
+
+		int *cellindex;
+		cellindex=(int*) malloc (numberofconnectivity * sizeof(int));
+
+
+
+
+for(i=startconnectivity;i<endconnectivity;i++)
 	{
 
 		FILE *fconnectivitydata = fopen(address[i], "r");
 		
 		connectivitydatadomaincount=filecount(address[i]);
-		connectivitydata[i-5]= (float*) malloc (connectivitydatadomaincount * sizeof(float));		
+		connectivitydata[i-startconnectivity]= (float*) malloc (connectivitydatadomaincount * sizeof(float));		
 		tempconnectivitydata=0;
 		j=0;
 		for(j=0;j<connectivitydatadomaincount;j++)
 		{
 		fscanf(fconnectivitydata, "%f", &tempconnectivitydata);
-		connectivitydata[i-5][j]=tempconnectivitydata;
+		connectivitydata[i-startconnectivity][j]=tempconnectivitydata;
 		}
 
+		cellindex[i-startconnectivity]=cgnsvaluegenerator(address[i]);
 			rewind(fconnectivitydata);
 			fflush(stdout);
 	fclose(fconnectivitydata);
@@ -218,6 +235,8 @@ for(i=0;i<nline;i++)
 for(i=0;i<connectivitydomainnumber;i++)
 {			free(connectivitydata[i]);	}
 
+
+//end of main function
 }
 
 
@@ -247,5 +266,67 @@ int filecount(char filename[500])
 //rewind function
 		fclose(filecount);
 return filecountnumber;
+
+}
+
+int cgnsvaluegenerator(char addr[500])
+{
+/*
+TRI_3   	triangle	5 
+QUAD_4  	quad		7 
+PYRA_5  	pyramid		12 
+PENTA_6 	prism		14 
+HEXA_8   	hex			17 
+MIXED   	mixed		20 
+TETRA_4 	tetra		10 
+
+*/
+
+
+
+
+char **cell;
+int ncell;
+ncell=7;
+cell = (char**) malloc(ncell * sizeof(char*));
+
+cell[0]="TRI_3";
+cell[1]="QUAD_4";
+cell[2]="PYRA_5";
+cell[3]="PENTA_6";
+cell[4]="HEXA_8";
+cell[5]="MIXED";
+cell[6]="TETRA_4";
+
+
+int i, compret;
+char *ret;
+
+	for(i=0;i<7;i++)
+	{
+//	ret=strstr(addr, cell[i]);
+
+		if (strstr(addr, cell[i]))
+		{
+			if(i==0)
+			{ return 3 ; }
+			else if (i==1)
+			{ return 4;}
+			else if (i==2)
+			{ return 5;}
+			else if (i==3)
+			{ return 6;}
+			else if (i==4)
+			{ return 8;}
+			else if (i==5)
+			{ return 0; printf("\n warning mixed !!!!");}
+			else if (i==6)
+			{ return 4;}
+		}
+		else
+		{
+//		printf("\n no mtch found");
+		}
+	}
 
 }
