@@ -41,7 +41,7 @@ also make sure you have the correct gtk libraries. usually they are installed by
 
 sudo apt-get install cmake
 sudo apt-get install cmake-curses-gui
-sudo apt-get install camke-data
+sudo apt-get install cmake-data
 
 4. xmu libraries for openGL support
 
