@@ -2,7 +2,7 @@ INSTRUCTIONS FOR INSTALLING CGNS PACKAGE IN UBUNTU 64-bit
 (Installing this library in 32-bit ubuntu will restrict the fuctionality of your library in terms of opening cgns files written in 64-bit format)
 
 The cgns library is an essential library required for the code to run. Here are the instructions to install it in 64-bit Ubuntu. 
-For other linux packages the instructions hsouldn't differ greatly.
+For other linux packages the instructions shouldn't differ greatly.
 
 Before you follow the instructions below, the following packages must be installed:
 
